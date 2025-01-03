@@ -14,11 +14,18 @@ import java.util.List;
 public class BlogService {
 	private final BlogRepository blogRepository;
 
-		public Article save(AddArticleRequest request){
-			return blogRepository.save(request.toEntity());
-		}
+	public Article save(AddArticleRequest request) {
+		return blogRepository.save(request.toEntity());
+	}
 
-		public List<Article> findAll() {
-			return blogRepository.findAll();
-		}
+	public List<Article> findAll() {
+		return blogRepository.findAll();
+	}
+
+	public Article findById(long id){
+		return blogRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("not found : " + id ));
+	}
 }
+
+

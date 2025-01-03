@@ -7,10 +7,7 @@ import me.imgyeong.springbootdeveloper.dto.ArticleResponse;
 import me.imgyeong.springbootdeveloper.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,15 @@ public class BlogApiController {
 
 		return ResponseEntity.ok()
 			.body(articles);
+	}
+
+	@GetMapping("/api/articles/{id}")
+	// URL 경로에서 값 추출
+	public ResponseEntity<ArticleResponse> findArticle(@PathVariable(name = "id") long id) {
+		Article article = blogService.findById(id);
+
+		return ResponseEntity.ok()
+			.body(new ArticleResponse(article));
 	}
 }
 
