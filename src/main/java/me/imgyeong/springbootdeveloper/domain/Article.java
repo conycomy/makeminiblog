@@ -5,7 +5,12 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDateTime;
+
+@EntityListeners(AutoCloseable.class)
 @Entity // 엔티티로 지정함
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,6 +27,14 @@ public class Article {
 
 	@Column(name = "content", nullable = false) //'content' 이라는 not null 컬럼과 매핑
 	private String content;
+
+	@CreatedDate
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
+
+	@LastModifiedDate
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
 
 	@Builder //빌더 패턴 으로 객체 생성, SQL 에서의 테이블 같은 존재임
 	public Article(String title, String content) {

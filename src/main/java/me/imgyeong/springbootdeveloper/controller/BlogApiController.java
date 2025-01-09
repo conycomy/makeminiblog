@@ -8,12 +8,13 @@ import me.imgyeong.springbootdeveloper.dto.UpdateArticleRequest;
 import me.imgyeong.springbootdeveloper.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class BlogApiController {
 	private final BlogService blogService;
 
