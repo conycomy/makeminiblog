@@ -38,7 +38,8 @@ public class WebSecurityConfig {
 				.requestMatchers(
 					new AntPathRequestMatcher("/login"),
 					new AntPathRequestMatcher("/signup"),
-					new AntPathRequestMatcher("/user")
+					new AntPathRequestMatcher("/user"),
+					new AntPathRequestMatcher("/articles")
 				).permitAll()
 			.anyRequest().authenticated())
 		.formLogin(formLogin -> formLogin // 폼 기반 로그인 설정
@@ -66,6 +67,7 @@ public class WebSecurityConfig {
 	//9 패스워드 인코더로 사용할 빈 등록
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+
 		return new BCryptPasswordEncoder();
 	}
 }

@@ -39,13 +39,14 @@ public class User implements UserDetails { // UserDetails를 상속받아 인증
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority("users"));
 	}
+
 	@Override // 사용자의 id를 반환(고유한 값)
 	public String getUsername() {
 		return email;
 	}
 
 	@Override // 사용자의 패스워드 반환
-	public StringdtPassword() {
+	public String getPassword() {
 		return password;
 	}
 
@@ -68,10 +69,9 @@ public class User implements UserDetails { // UserDetails를 상속받아 인증
 		return true; // ture -> 만료되지 않았음
 	}
 
-	@Override // 계정 사용 가능 여부 반환
-	public boolean inEnabled() {
-		// 계정이 사용 가능한지 확인 하는 로직
-		return true; // true -> 사용가능
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
-}
 
+}
